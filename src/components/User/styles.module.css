@@ -1,0 +1,6 @@
+.user {
+  margin-top: 8px;
+  color: var(--color-header-bg);
+  width: 100%;
+  font-style: italic;
+}

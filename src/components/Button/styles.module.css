@@ -1,0 +1,26 @@
+.root {
+    min-width: 25px;
+    border-radius: 5px;
+    background-color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    border-radius: 5px;
+    color: var(--color-white);
+
+    cursor: pointer;
+}
+
+.l {
+    font-size: 20px;
+    min-width: 30px;
+    min-height: 30px;
+}
+.m {
+    font-size: 16px;
+    min-width: 25px;
+    min-height: 25px;
+}
+.s {
+    font-size: 12px;
+    min-width: 20px;
+    min-height: 20px;
+}

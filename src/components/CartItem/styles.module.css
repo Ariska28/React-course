@@ -1,0 +1,11 @@
+.item {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.text {
+  font-size: 18px;
+  display: block;
+  color: var(--color-header-bg);
+}

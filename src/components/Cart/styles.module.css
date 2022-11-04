@@ -1,0 +1,5 @@
+.cart {
+  padding: 20px;
+  border-radius: 4px;
+  background-color: var(--color-bg);
+}

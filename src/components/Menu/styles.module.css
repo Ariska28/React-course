@@ -1,0 +1,21 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+.title {
+    color: var(--color-header-bg);
+}
+
+.list {
+    border: 1px solid var(--color-primary);
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+.dish {
+    padding:10px 0;
+}
+
+.dish:not(:last-child) { 
+    border-bottom: 1px solid var(--color-primary);
+}

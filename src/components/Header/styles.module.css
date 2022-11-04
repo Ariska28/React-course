@@ -1,0 +1,24 @@
+.header {
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    box-sizing: border-box;
+
+    height: 64px;
+    background-color: var(--color-header-bg);
+    width: 100%;
+}
+
+.list {
+    margin-left: auto;
+}
+
+.link {
+    margin: 0 10px 0 10px;
+    text-decoration: none;
+    color: var(--color-white);
+}
+
+.active {
+    color: var(--color-accent);
+}

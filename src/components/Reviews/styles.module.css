@@ -1,0 +1,25 @@
+.root {
+    display: flex;
+    flex-direction: column;
+}
+
+.reviews {
+    border: 1px solid var(--color-primary);
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+.add {
+    margin-top: 10px;
+    display: flex;
+}
+
+.question {
+    font-size: 16px;
+    color: var(--color-header-bg)
+
+}
+
+.link {
+    color: var(--color-header-bg);
+}

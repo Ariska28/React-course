@@ -1,0 +1,13 @@
+.root {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 0;
+}
+
+.quote {
+    width: 70%;
+}
+
+.reviewText {
+    font-size: 18px;
+}

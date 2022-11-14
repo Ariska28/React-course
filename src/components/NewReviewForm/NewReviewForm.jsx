@@ -5,29 +5,29 @@ import { Rating } from "../Rating/Rating";
 
 
 const INITIAL_FORM_VALUE = {
-  name: {value: "", touched: false, hasError: false },
-  text: {value: "", touched: false, hasError: false },
-  email: {value: "", touched: false, hasError: false },
-  rating: 1,
+  NAME: {value: "", touched: false, hasError: false },
+  TEXT: {value: "", touched: false, hasError: false },
+  EMAIL: {value: "", touched: false, hasError: false },
+  RATING: 1,
 };
 
 const ERROR_MESSAGES = {
-  empty: "Requared field",
-  maxLength: "Uncorrect string length: max length 5",
-  email: "Input correct email"
+  EMPTY: "Requared field",
+  MAXLENGTH: "Uncorrect string length: max length 5",
+  ENAIL: "Input correct email"
 }
 
 const ACTIONS = {
-  setName: "setName",
-  setText: "setText",
-  setEmail: "setEmail",
-  setRating: "setRating",
-  clear: "clear",
+  SETNAME: "setName",
+  SETTEXT: "setText",
+  SETEMAIL: "setEmail",
+  SETRATING: "setRating",
+  CLEAR: "clear",
 };
 
 const formReducer = (state, action) => {
   switch(action.type) {
-    case ACTIONS.setName:  {
+    case ACTIONS.SETNAME:  {
       return {
         ...state, 
         name: { 
@@ -39,7 +39,7 @@ const formReducer = (state, action) => {
       }
     }
 
-    case ACTIONS.setText: {
+    case ACTIONS.SETTEXT: {
       return {
         ...state, 
         text: {
@@ -50,7 +50,7 @@ const formReducer = (state, action) => {
       }
     }
 
-    case ACTIONS.setEmail: {
+    case ACTIONS.SETEMAIL: {
       return {
         ...state, 
         email: {
@@ -62,14 +62,14 @@ const formReducer = (state, action) => {
       }
     }
 
-    case ACTIONS.setRating: {
+    case ACTIONS.SETRATING: {
       return {
         ...state,
         rating: action.payload
       }
     }
 
-    case ACTIONS.clear: {
+    case ACTIONS.CLEAR: {
       return INITIAL_FORM_VALUE;
     }
 
@@ -81,18 +81,18 @@ const formReducer = (state, action) => {
 const validation = {
   isEmpty: (value) => {
     if (value.length < 1) {
-      console.log(new Error(ERROR_MESSAGES.empty));
+      console.log(new Error(ERROR_MESSAGES.EMPTY));
       return { hasError: true }
     }
   },
   maxLength: (value) => {
     if (value.length > 5) {
-      console.log(new Error(ERROR_MESSAGES.maxLength));
+      console.log(new Error(ERROR_MESSAGES.MAXLENGTH));
       return { hasError: true }
     }  
   },
   isCorrectEmail: (value) => {
-    console.log(new Error(ERROR_MESSAGES.email));
+    console.log(new Error(ERROR_MESSAGES.EMAIL));
     if(!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value))) {
       return { hasError: true }
     }
@@ -113,16 +113,16 @@ export const NewReviewForm = ({ className }) => {
   const [formValue, dispatch] = useReducer(formReducer, INITIAL_FORM_VALUE);
 
   const onNameChange = (event) => {
-    dispatch({ type: ACTIONS.setName, payload: event.target.value });
+    dispatch({ type: ACTIONS.SETNAME, payload: event.target.value });
   };
   const onTextChange = (event) => {
-    dispatch({ type: ACTIONS.setText, payload: event.target.value });
+    dispatch({ type: ACTIONS.SETTEXT, payload: event.target.value });
   };
   const onEmailChange = (event) => {
-    dispatch({ type: ACTIONS.setEmail, payload: event.target.value });
+    dispatch({ type: ACTIONS.SETEMAIL, payload: event.target.value });
   };
   const onRatingChange = (value) => {
-    dispatch({ type: ACTIONS.setRating, payload: value });
+    dispatch({ type: ACTIONS.SETRATING, payload: value });
   };
 
   return (
@@ -160,7 +160,7 @@ export const NewReviewForm = ({ className }) => {
         <label>Choose rating</label>
         <Rating value={formValue.rating} onChange={onRatingChange} />
       </div>
-      <button className={styles.clear} onClick={() => dispatch({ type: ACTIONS.clear })}>Clear</button>
+      <button className={styles.clear} onClick={() => dispatch({ type: ACTIONS.CLEAR })}>Clear</button>
     </div>
   );
 };

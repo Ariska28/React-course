@@ -2,13 +2,17 @@ import styles from "./styles.module.css";
 import classnames from "classnames";
 import { useReducer } from "react";
 import { Rating } from "../Rating/Rating";
+import { useRef } from "react";
+import emailjs from '@emailjs/browser';
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 
 const INITIAL_FORM_VALUE = {
-  NAME: {value: "", touched: false, hasError: false },
-  TEXT: {value: "", touched: false, hasError: false },
-  EMAIL: {value: "", touched: false, hasError: false },
-  RATING: 1,
+  name: {value: "", touched: false, hasError: false },
+  text: {value: "", touched: false, hasError: false },
+  email: {value: "", touched: false, hasError: false },
+  rating: 1,
 };
 
 const ERROR_MESSAGES = {
@@ -16,6 +20,7 @@ const ERROR_MESSAGES = {
   MAXLENGTH: "Uncorrect string length: max length 5",
   ENAIL: "Input correct email"
 }
+
 
 const ACTIONS = {
   SETNAME: "setName",
@@ -111,6 +116,7 @@ const addValidationStyles = (hasError, touched) => {
 
 export const NewReviewForm = ({ className }) => {
   const [formValue, dispatch] = useReducer(formReducer, INITIAL_FORM_VALUE);
+  const [formError, setformError] = useState();
 
   const onNameChange = (event) => {
     dispatch({ type: ACTIONS.SETNAME, payload: event.target.value });
@@ -125,8 +131,27 @@ export const NewReviewForm = ({ className }) => {
     dispatch({ type: ACTIONS.SETRATING, payload: value });
   };
 
+  const form = useRef();
+  const navigate = useNavigate();
+  const hasError = Object.values(formValue).some(item => {
+    return (item.hasError === true || item.touched === false)
+  });
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    if(!hasError) { 
+      emailjs.sendForm('service_2r89coa', 'template_ja45kem', form.current, '4L5g0rGznARsA0Xfu')
+        .then((result) => { 
+          navigate('/success');
+        }, (error) => {
+          navigate('/error');
+        });
+    }
+  }
+
   return (
-    <div className={classnames(styles.root, className)}>
+    <form ref={form} onSubmit={sendEmail} className={classnames(styles.root, className)}>
       <div className={classnames(styles.formControl, addValidationStyles(formValue.name.hasError, formValue.name.touched))}>
         <label htmlFor="name">Name</label>
         <input
@@ -159,8 +184,13 @@ export const NewReviewForm = ({ className }) => {
       <div className={styles.formControl}>
         <label>Choose rating</label>
         <Rating value={formValue.rating} onChange={onRatingChange} />
+        <input className={styles.hidden} name="rating"  type="number"  value={formValue.rating} onChange={onRatingChange}/>
       </div>
-      <button className={styles.clear} onClick={() => dispatch({ type: ACTIONS.CLEAR })}>Clear</button>
-    </div>
+      { formError }
+      <div className={styles.buttons}>
+        <input className={styles.clear}  onClick={() => hasError ? setformError(<div className={styles.error}> Form wasn't sent, please fix mistakes </div>) : setformError()} type="submit" value="Send" />
+        <button className={styles.clear} onClick={() => dispatch({ type: ACTIONS.CLEAR })}>Clear</button>
+      </div>
+    </form>
   );
 };

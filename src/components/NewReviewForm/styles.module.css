@@ -22,6 +22,20 @@
     border: 2px solid var(--color-error);
 }
 
+.error  {
+    color: var(--color-error);
+}
+
+.hidden {
+    display: none;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
 .succes input {
     border: 2px solid var(--color-success);
 }
@@ -44,6 +58,7 @@
     color: var(--color-text);
     background-color: var(--color-white);
     font-weight: 600;
+    width: 100%;
 }
 
 .clear:hover {
@@ -54,4 +69,10 @@
 .clear:focus {
     color: var(--color-white);
     background-color: var(--color-text);
+}
+
+.clear:active {
+    border: 1px solid var(--color-text);
+    color: var(--color-text);
+    background-color: var(--color-white);
 }

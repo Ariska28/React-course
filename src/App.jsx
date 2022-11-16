@@ -10,7 +10,9 @@ import { CartPage } from "./pages/CartPage/CartPage";
 import { Restaurant } from "./components/Restaurant/Restaurant";
 import { Menu } from "./components/Menu/Menu";
 import { Reviews } from "./components/Reviews/Reviews";
-import {ReviewFormPage} from "./pages/ReviewFormPage/ReviewFormPage"
+import { ReviewFormPage } from "./pages/ReviewFormPage/ReviewFormPage"
+import { ErrorFormPage } from "./pages/ErrorFormPage/ErrorFormPage";
+import { SuccessFormPage } from "./pages/SuccessFormPage/SuccessFormPage";
 
 export const App = () => {
   const [theme] = useState("light"); // 'light' | 'dark'
@@ -31,6 +33,8 @@ export const App = () => {
               </Route>
               <Route path="/cart" element={<CartPage />} />
               <Route path="/reviewForm" element={<ReviewFormPage/>} />
+              <Route path="/error" element={<ErrorFormPage/>} />
+              <Route path="/success" element={<SuccessFormPage/>} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </Layout>
